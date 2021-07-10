@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+from django.db.models import Q
 
 EXPERIENCE = (
     (0, 'Elementary'),
@@ -39,7 +40,7 @@ class TaskManager(models.Manager):
         return self.filter(assigned_benefactor__user=user)
 
     def all_related_tasks_to_user(self, user):
-        return self.filter(assigned_benefactor__user=user, charity__user=user)
+        return self.filter(Q(assigned_benefactor__user=user) | Q(charity__user=user) & Q(state="P"))
 
 
 class Task(models.Model):
