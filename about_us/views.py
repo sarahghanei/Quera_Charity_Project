@@ -7,7 +7,6 @@ def about_us(request):
     list_users = []
     for user in list(users):
         user = user.get_full_name()
-        user += "          "
         list_users.append(user)
 
     context = {
