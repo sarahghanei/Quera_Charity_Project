@@ -39,7 +39,7 @@ class TaskManager(models.Manager):
         return self.filter(assigned_benefactor__user=user)
 
     def all_related_tasks_to_user(self, user):
-        return self.all()
+        return self.filter(assigned_benefactor__user=user, charity__user=user)
 
 
 class Task(models.Model):
